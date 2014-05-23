@@ -1,0 +1,78 @@
+<%-- 
+    Document   : listaPessoas
+    Created on : 07/04/2014, 13:08:20
+    Author     : Acer
+--%>
+
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--<jsp:useBean id="con" class="br.com.fiveware.DaoPessoa"/>--%>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Lista Pessoas</title>
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+    </head>
+    <body>
+        <h1>Lista de Pessoas</h1>
+        <%@ page import="br.com.fiveware.DaoPessoa" %>  
+        <%@ page import="br.com.fiveware.Pessoa" %> 
+        <%@ page import="java.util.ArrayList" %>  
+        <%@ page import="java.util.Iterator" %>  
+
+
+        <p><strong>Tabela Pessoa </strong></p>  
+        <table border=1 cellspacing=0 cellpadding=0 >  
+
+            <tr>  
+                <td width=150><strong>  
+                        CPF  
+                    </strong></td>      
+                <td width=100><strong>  
+                        Nome  
+                    </strong></td>      
+                <td width=50><strong>  
+                        Idade  
+                    </strong></td>  
+                <td width=30><strong>  
+                        Sexo  
+                    </strong></td> 
+                <td width=150><strong>  
+                        Quantos Filhos
+                    </strong></td> 
+            </tr>  
+
+        </tr>  
+
+
+        <%
+            DaoPessoa dao = new DaoPessoa();
+            List<Pessoa> pessoas = dao.listarPessoa();
+            //List<Livros> livros = new DaoLivros(null).listaLivros();
+            for (Pessoa p : pessoas) {
+        %>
+
+        <tr>
+            <td><%= p.getCpf()%></td> 
+            <td><%=p.getNome()%></td>
+            <td><%=p.getIdade()%></td>
+            <td><%=p.getSexo()%></td>
+            <td><%=p.getQntdFilho()%></td>
+        </tr>
+        <%
+            }
+        %>
+
+
+
+
+    </table>  
+    </br>
+
+    <a href='index.html'>Voltar</a>
+</body>
+</html>
